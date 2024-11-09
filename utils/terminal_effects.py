@@ -2,7 +2,7 @@ import os, time
 
 def on_start():
 
-    print('''
+    print(r'''
       ___ _    _                    
      / __| |_ (_)_ __  ___ _ _ __ _ 
     | (__| ' \| | '  \/ -_) '_/ _` |
