@@ -2,7 +2,7 @@ import os, time
 
 def on_start():
 
-    print('''                  
+    print('''
       ___ _    _                    
      / __| |_ (_)_ __  ___ _ _ __ _ 
     | (__| ' \| | '  \/ -_) '_/ _` |
@@ -11,4 +11,4 @@ def on_start():
 
     time.sleep(1)
 
-    print('> Chimera userbot was launched. Chimera by Ladvix.\n\n')
+    print('> Chimera userbot was launched. Chimera by Ladvix\n\n')
