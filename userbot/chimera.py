@@ -1,7 +1,6 @@
 import os
 import config
 import importlib
-import subprocess
 from utils import dirs, json_helper, credentials, console_color
 from pyrogram import Client, filters, errors, utils
 from userbot.commands.start import start
@@ -74,7 +73,7 @@ class userbot:
     def launch_modules(self):
         for module_name in [f for f in os.listdir(dirs.MODULES_PATH) if os.path.isdir(os.path.join(dirs.MODULES_PATH, f)) and f != 'pycache']:
             path = f'{dirs.MODULES_PATH}{module_name}/'
-            subprocess.run(f'pip install -r {path}requirements.txt --quiet', stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            os.system(f'pip install -r {path}requirements.txt --quiet')
             importlib.import_module(f'userbot.modules.{module_name}.main').launch(self, module_name)
 
 
