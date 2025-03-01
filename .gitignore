@@ -26,6 +26,9 @@ session.session-journal
 # Credentials and sensitive data
 credentials.json
 
+# Modules
+/userbot/modules
+
 # Logs
 *.log
 
