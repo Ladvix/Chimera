@@ -72,8 +72,7 @@ class userbot:
 
     def launch_modules(self):
         for module_name in [f for f in os.listdir(dirs.MODULES_PATH) if os.path.isdir(os.path.join(dirs.MODULES_PATH, f)) and f != 'pycache']:
-            path = f'{dirs.MODULES_PATH}{module_name}/'
-            os.system(f'pip install -r {path}requirements.txt --quiet')
+            os.system(f'pip install -r userbot/modules/{module_name}/requirements.txt --quiet')
             importlib.import_module(f'userbot.modules.{module_name}.main').launch(self, module_name)
 
 
