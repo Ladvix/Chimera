@@ -1,62 +1,78 @@
+<div align="center">
+
 # Chimera Userbot
 
-<p align="center">
+<p>
   <img src="https://img.shields.io/badge/Python-3.7+-blue.svg" alt="Python Version">
   <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License">
   <img src="https://img.shields.io/badge/Telegram-Userbot-blue.svg" alt="Telegram Userbot">
 </p>
 
-## 📌 О проекте
+**English** | [Русский](README_RU.md)
 
-Chimera - это мощный и гибкий юзербот для Telegram, разработанный на Python с использованием библиотеки Pyrogram. Он позволяет автоматизировать различные действия в Telegram и расширять функциональность с помощью модулей.
+</div>
 
-## ✨ Особенности
+## 📌 About
 
-- 🚀 Модульная архитектура для легкого расширения функциональности
-- 🔌 Простая установка и настройка
-- 📦 Возможность установки сторонних модулей из GitHub
-- 🛠️ Удобное управление через команды в Telegram
-- 🔒 Безопасное хранение учетных данных
+Chimera is a powerful and flexible Telegram userbot developed in Python using the Pyrogram library. It allows you to automate various actions in Telegram and extend functionality through modules.
 
-## 🔧 Установка
+## ✨ Features
+
+- Modular architecture for easy functionality extension
+- Simple installation and configuration
+- Ability to install third-party modules from GitHub
+- Convenient management through Telegram commands
+- Secure credential storage
+- Hot module reloading
+- Performance monitoring
+- Multi-language support
+
+## 🔧 Installation
 
 ```bash
-# Клонирование репозитория
-git clone https://github.com/yourusername/Chimera.git
+# Clone the repository
+git clone https://github.com/Ladvix/Chimera.git
 cd Chimera
 
-# Установка зависимостей
+# Install dependencies
 pip install -r requirements.txt
 
-# Запуск юзербота
+# Run the userbot
 python main.py
 ```
 
-## 📚 Использование
+## 📚 Usage
 
-После запуска и авторизации, вы можете использовать следующие команды в Telegram:
+After launching and authorizing, you can use the following commands in Telegram:
 
-- `.start` - Запуск бота и отображение приветственного сообщения
-- `.help [название модуля]` - Список доступных команд бота
-- `.modules` - Список установленных модулей
-- `.install {ссылка github} as {название модуля}` - Установка модуля с GitHub
-- `.uninstall {название модуля}` - Удаление выбранного модуля
+- `.start` - Start the bot and display a welcome message
+- `.help [module name]` - List available bot commands
+- `.modules` - List installed modules
+- `.install {github link} as {module name}` - Install a module from GitHub
+- `.uninstall {module name}` - Remove a selected module
 
-## 🔄 Разработка модулей
+## 🛠️ Configuration
 
-Вы можете создавать собственные модули для расширения функциональности Chimera. Модули должны следовать определенной структуре:
+Chimera can be configured through the `config.py` file. You can customize various settings such as:
 
-```
-module_name/
-├── main.py         # Основной файл модуля с функцией launch
-├── requirements.txt # Зависимости модуля
-└── README.md       # Документация модуля
-```
+- API credentials
+- Proxy settings
+- Module behavior
+- UI preferences
 
-## 📄 Лицензия
+## 🔍 Troubleshooting
 
-Распространяется под лицензией MIT. См. файл `LICENSE` для получения дополнительной информации.
+If you encounter any issues:
 
-## 🔗 Ссылки
+1. Check the logs for error messages
+2. Ensure all dependencies are correctly installed
+3. Verify your API credentials
+4. Join our Telegram support channel for assistance
 
-- [Telegram канал](https://t.me/chimera_ubot)
+## 📄 License
+
+Distributed under the MIT License. See the `LICENSE` file for more information.
+
+## 🔗 Links
+
+- <a href="https://t.me/chimera_ubot"><img src="https://img.shields.io/badge/Telegram-2CA5E0?style=flat&logo=telegram&logoColor=white" alt="Telegram Channel"></a>
