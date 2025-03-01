@@ -71,6 +71,9 @@ class userbot:
 
 
     def launch_modules(self):
+        if False == (os.path.isdir(dirs.MODULES_PATH)):
+            os.makedirs(os.path.isdir(dirs.MODULES_PATH))
+
         for module_name in [f for f in os.listdir(dirs.MODULES_PATH) if os.path.isdir(os.path.join(dirs.MODULES_PATH, f)) and f != 'pycache']:
             try:
                 os.system(f'pip install -r userbot/modules/{module_name}/requirements.txt --quiet')
