@@ -72,8 +72,11 @@ class userbot:
 
     def launch_modules(self):
         for module_name in [f for f in os.listdir(dirs.MODULES_PATH) if os.path.isdir(os.path.join(dirs.MODULES_PATH, f)) and f != 'pycache']:
-            os.system(f'pip install -r userbot/modules/{module_name}/requirements.txt --quiet')
-            importlib.import_module(f'userbot.modules.{module_name}.main').launch(self, module_name)
+            try:
+                os.system(f'pip install -r userbot/modules/{module_name}/requirements.txt --quiet')
+                importlib.import_module(f'userbot.modules.{module_name}.main').launch(self, module_name)
+            except Exception as e:
+                console_color.fore_fromhex('Неизвестная ошибка: ' + str(e) + '\n', '#FF381E')
 
 
     def launch_bot(self):
