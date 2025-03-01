@@ -46,10 +46,10 @@ python main.py
 After launching and authorizing, you can use the following commands in Telegram:
 
 - `.start` - Start the bot and display a welcome message
-- `.help [module name]` - List available bot commands
+- `.help { module name }` - List available bot commands
 - `.modules` - List installed modules
-- `.install {github link} as {module name}` - Install a module from GitHub
-- `.uninstall {module name}` - Remove a selected module
+- `.install { github link } as { module name }` - Install a module from GitHub
+- `.uninstall { module name }` - Remove a selected module
 
 ## 🛠️ Configuration
 
