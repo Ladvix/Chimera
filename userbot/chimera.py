@@ -40,7 +40,13 @@ class userbot:
                 config.PHONE_CODE_HASH = sent_code.phone_code_hash
                 config.PHONE_CODE = input('Введите код подтверждения: ')
 
-                self.app.sign_in(phone_number=config.PHONE_NUMBER, phone_code=config.PHONE_CODE, phone_code_hash=config.PHONE_CODE_HASH)
+                try:
+                    self.app.sign_in(phone_number=config.PHONE_NUMBER, phone_code=config.PHONE_CODE, phone_code_hash=config.PHONE_CODE_HASH)
+                except errors.SessionPasswordNeeded:
+                    # Двухфакторная аутентификация включена
+                    password = input('Двухфакторная аутентификация включена. Введите ваш пароль: ')
+                    self.app.check_password(password)
+                    console_color.fore_fromhex('Успешная авторизация с двухфакторной аутентификацией\n', '#00FF00')
 
                 self.app.disconnect()
 
