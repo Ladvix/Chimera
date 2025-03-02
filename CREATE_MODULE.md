@@ -103,7 +103,7 @@ playwright
 После создания модуля, вы можете установить его с помощью команды:
 
 ```
-.install https://github.com/username/module-repository
+.install https://github.com/username/module-repository as module_name
 ```
 
 ## Советы по разработке модулей
