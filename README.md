@@ -71,7 +71,7 @@ If you encounter any issues:
 
 ## 📄 License
 
-Distributed under the MIT License. See the `LICENSE` file for more information.
+Distributed under [the MIT License](https://github.com/Ladvix/Chimera/blob/main/LICENSE).
 
 ## 🔗 Links
 
