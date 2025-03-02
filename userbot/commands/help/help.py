@@ -3,7 +3,7 @@ from utils import dirs
 from string import Template
 
 
-def init(client, message):
+def init(bot, client, message):
     try:
         module_name = message.text.split(' ', maxsplit=1)[1]
         path = dirs.MODULES_PATH + f'{module_name}/templates/README.html'

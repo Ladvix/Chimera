@@ -1,9 +1,9 @@
 import shutil
-from utils import dirs
 from string import Template
+from utils import dirs
 
 
-def init(client, message):
+def init(bot, client, message):
     data = message.text.split(' ', maxsplit=2)
     module_name = data[1]
 

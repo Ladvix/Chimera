@@ -2,7 +2,7 @@ import os
 import time
 from utils import dirs
 
-def init(client, message):
+def init(bot, client, message):
     with open(dirs.COMMANDS_PATH + 'modules/templates/README.html', encoding='utf-8') as f:
         output = f.read()
 
