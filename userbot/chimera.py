@@ -18,27 +18,26 @@ class userbot:
 
     def __init__(self):
         with open(dirs.ABS_PATH + 'banner.txt') as f:
-            banner_text = f.read()
-            print()
-            console_color.fore_fromhex(f"{console_color.COLORS['BOLD']}{banner_text}{console_color.COLORS['RESET']}", '#FF4C2D')
-            print()
+            print('\n' + console_color.fore_fromhex(f.read(), hex_color='#FF4C2D') + '\n')
         
-        console_color.print_styled("▶ Авторизация", hex_color="#3498db")
+        console_color.print_log('Авторизация')
+
         if True == (os.path.isfile(credentials.CREDENTIALS_PATH)):
             try:
-                print("  ↳ Загрузка существующей сессии...")
+                print('  ↳ Загрузка существующей сессии...')
                 self.app = Client(SESSION_NAME)
-                print("  ↳ Сессия загружена успешно!")
+                print('  ↳ Сессия загружена успешно!')
 
             except Exception as e:
-                console_color.print_error(f"Ошибка при загрузке сессии: {str(e)}")
+                console_color.print_error(f'Ошибка при загрузке сессии: {str(e)}')
                 sys.exit(1)
         else:
-            print("  ↳ Для работы бота необходимо ввести данные авторизации Telegram API\n")
+            print('  ↳ Для работы бота необходимо ввести данные авторизации Telegram API')
+            print()
             
-            config.API_ID = console_color.print_input_prompt("▶ Введите API ID:")
-            config.API_HASH = console_color.print_input_prompt("▶ Введите API Hash:")
-            config.PHONE_NUMBER = console_color.print_input_prompt("▶ Введите ваш номер телефона:")
+            config.API_ID = console_color.print_input_prompt('Введите API ID: ')
+            config.API_HASH = console_color.print_input_prompt('Введите API Hash: ')
+            config.PHONE_NUMBER = console_color.print_input_prompt('Введите ваш номер телефона: ')
 
             credentials.save(config.API_ID, config.API_HASH, config.PHONE_NUMBER)
 
@@ -49,12 +48,12 @@ class userbot:
                 sent_code = self.app.send_code(phone_number=config.PHONE_NUMBER)
 
                 config.PHONE_CODE_HASH = sent_code.phone_code_hash
-                config.PHONE_CODE = console_color.print_input_prompt("▶ Введите код подтверждения:")
+                config.PHONE_CODE = console_color.print_input_prompt('Введите код подтверждения: ')
 
                 try:
                     self.app.sign_in(phone_number=config.PHONE_NUMBER, phone_code=config.PHONE_CODE, phone_code_hash=config.PHONE_CODE_HASH)
                 except errors.SessionPasswordNeeded:
-                    password = console_color.print_input_prompt("▶ Введите пароль от 2fa:")
+                    password = console_color.print_input_prompt('Введите пароль от 2fa: ')
                     self.app.check_password(password)
 
                 self.app.disconnect()
@@ -66,18 +65,19 @@ class userbot:
                 except:
                     pass
                     
-                if "API_ID_INVALID" in str(e):
+                if 'API_ID_INVALID' in str(e):
                     os.remove(credentials.CREDENTIALS_PATH)
                     if os.path.isfile(SESSION_PATH):
                         os.remove(SESSION_PATH)
-                    console_color.print_error("\n▶ API ID или API Hash введены неверно")
+                    console_color.print_error('API ID или API Hash введены неверно')
                     sys.exit(1)
                 else:
                     os.remove(credentials.CREDENTIALS_PATH)
                     if os.path.isfile(SESSION_PATH):
                         os.remove(SESSION_PATH)
-                    console_color.print_error(f"▶ Неизвестная ошибка: {str(e)}")
+                    console_color.print_error(f'Неизвестная ошибка: {str(e)}')
                     sys.exit(1)
+
             except Exception as e:
                 try:
                     if hasattr(self, 'app') and self.app is not None:
@@ -87,8 +87,11 @@ class userbot:
                     
                 os.remove(credentials.CREDENTIALS_PATH)
                 if os.path.isfile(SESSION_PATH):
-                    os.remove(SESSION_PATH)
-                console_color.print_error(f"▶ Неизвестная ошибка: {str(e)}")
+                    try:
+                        os.remove(SESSION_PATH)
+                    except:
+                        pass
+                console_color.print_error(f'Неизвестная ошибка: {str(e)}')
                 sys.exit(1)
 
 
@@ -119,37 +122,38 @@ class userbot:
             os.makedirs(dirs.MODULES_PATH)
 
         print()
-        console_color.print_styled("▶ Модули", hex_color="#9b59b6")
+        console_color.print_log('Модули')
         
         modules_found = [f for f in os.listdir(dirs.MODULES_PATH) if os.path.isdir(os.path.join(dirs.MODULES_PATH, f)) and f != 'pycache']
         
         if not modules_found:
-            print("  ↳ Модули не найдены")
+            print('  ↳ Модули не найдены')
             return
             
-        print(f"  ↳ Найдено модулей: {len(modules_found)}")
+        print(f'  ↳ Найдено модулей: {len(modules_found)}')
         
         for module_name in modules_found:
             try:
-                print(f"  ↳ Загрузка модуля '{module_name}'...")
+                print(f'  ↳ Загрузка модуля "{module_name}"...')
                 try:
                     os.system(f'pip install -r userbot/modules/{module_name}/requirements.txt --quiet')
                     importlib.import_module(f'userbot.modules.{module_name}.main').launch(self, module_name)
-                    print(f"  ↳ Модуль '{module_name}' загружен")
+                    print(f'  ↳ Модуль "{module_name}" загружен')
                 except KeyboardInterrupt:
                     print()
                     return
             except Exception as e:
-                console_color.print_error(f"▶ Ошибка при загрузке модуля '{module_name}': {str(e)}")
+                console_color.print_error(f'Ошибка при загрузке модуля "{module_name}": {str(e)}')
+                print()
 
 
     def launch_bot(self):
         print()
-        console_color.print_styled("▶ Запуск", hex_color="#2ecc71")
+        console_color.print_log('Запуск')
         
         try:
-            print("  ↳ Бот запущен и готов к работе!")
-            print("  ↳ Нажмите Ctrl+C для остановки")
+            print('  ↳ Бот запущен и готов к работе!')
+            print('  ↳ Нажмите Ctrl+C для остановки')
             print()
             self.app.run()
         
@@ -162,10 +166,10 @@ class userbot:
                 pass
                 
             os.remove(credentials.CREDENTIALS_PATH)
-            console_color.print_error("▶ Произошла ошибка авторизации. Перезапустите программу")
+            console_color.print_error('Произошла ошибка авторизации. Перезапустите программу')
 
         except KeyboardInterrupt:
-            console_color.print_warning("▶ Бот остановлен пользователем")
+            console_color.print_warning('Бот остановлен пользователем')
 
         except Exception as e:
-            console_color.print_error(f"▶ Неизвестная ошибка: {str(e)}")
+            console_color.print_error(f'Неизвестная ошибка: {str(e)}')
