@@ -1,6 +1,6 @@
 # Создание модуля для Chimera Userbot
 
-Это руководство поможет вам создать собственный модуль для Chimera Userbot. В качестве примера мы будем использовать структуру модуля переводчика (`translator`).
+Это руководство поможет вам создать собственный модуль для Chimera Userbot. 
 
 ## Структура модуля
 
@@ -11,7 +11,7 @@ module_name/
 ├── main.py             # Основной файл с логикой модуля
 ├── README.md           # Документация модуля
 ├── requirements.txt    # Зависимости модуля (если есть)
-└── templates/          # Шаблоны для отображения (опционально)
+└── templates/          # Шаблоны для отображения 
     └── README.html     # HTML шаблон для команды .modules
 ```
 
@@ -31,11 +31,6 @@ mkdir userbot/modules/your_module_name
 
 ```python
 from pyrogram import Client, filters
-
-# Импортируйте необходимые библиотеки
-# Например, для модуля переводчика:
-# from googletrans import Translator, LANGUAGES
-# TRANSLATOR = Translator()
 
 
 def launch(bot, module_name):
