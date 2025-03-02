@@ -2,8 +2,9 @@ import os
 import sys
 import config
 import importlib
-from utils import dirs, json_helper, credentials, console_color
 from pyrogram import Client, filters, errors, utils
+from utils import dirs, json_helper, credentials, console_color
+from userbot import module
 from userbot.commands.start import start
 from userbot.commands.help import help
 from userbot.commands.modules import modules
@@ -98,23 +99,23 @@ class userbot:
     def add_handlers(self):
         @self.app.on_message(filters.command('start', prefixes='.') & filters.me)
         def start_handler(client, message):
-            start.init(client, message)
+            start.init(self, client, message)
 
         @self.app.on_message(filters.command('help', prefixes='.') & filters.me)
         def help_handler(client, message):
-            help.init(client, message)
+            help.init(self, client, message)
 
         @self.app.on_message(filters.command('modules', prefixes='.') & filters.me)
         def modules_handler(client, message):
-            modules.init(client, message)
+            modules.init(self, client, message)
 
         @self.app.on_message(filters.command('install', prefixes='.') & filters.me)
         def install_handler(client, message):
-            install.init(client, message)
+            install.init(self, client, message)
 
         @self.app.on_message(filters.command('uninstall', prefixes='.') & filters.me)
         def uninstall_handler(client, message):
-            uninstall.init(client, message)
+            uninstall.init(self, client, message)
 
 
     def launch_modules(self):
@@ -136,8 +137,7 @@ class userbot:
             try:
                 print(f'  ↳ Загрузка модуля "{module_name}"...')
                 try:
-                    os.system(f'pip install -r userbot/modules/{module_name}/requirements.txt --quiet')
-                    importlib.import_module(f'userbot.modules.{module_name}.main').launch(self, module_name)
+                    module.launch(self, module_name)
                     print(f'  ↳ Модуль "{module_name}" загружен')
                 except KeyboardInterrupt:
                     print()
