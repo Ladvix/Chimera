@@ -35,6 +35,3 @@ credentials.json
 # OS specific
 .DS_Store
 Thumbs.db
-
-# Modules
-modules/
