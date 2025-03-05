@@ -142,6 +142,7 @@ class userbot:
                 except KeyboardInterrupt:
                     print()
                     return
+
             except Exception as e:
                 console_color.print_error(f'Ошибка при загрузке модуля "{module_name}": {str(e)}')
                 print()
@@ -158,7 +159,6 @@ class userbot:
             self.app.run()
         
         except (errors.AuthKeyUnregistered, AttributeError):
-
             try:
                 if hasattr(self, 'app') and self.app is not None:
                     self.app.disconnect()
