@@ -14,7 +14,7 @@ def clone(url, path):
     with zipfile.ZipFile(path + '/main.zip') as zip_ref:
         zip_ref.extractall(path)
 
-    source_dir = f'{path}/{repo_name}-main'
+    source_dir = path + '/' + repo_name + '-main'
     target_dir = path
 
     for filename in os.listdir(source_dir):
