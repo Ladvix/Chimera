@@ -9,4 +9,4 @@ def read(path):
 
 def write(path, data):
     with open(path, 'w', encoding='utf-8') as f:
-        f.write(json.dumps(data), ensure_ascii=False)
+        f.write(json.dumps(data, ensure_ascii=False))
