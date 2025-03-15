@@ -4,7 +4,7 @@ import json
 
 def read(path):
     with open(path, 'r', encoding='utf-8') as f:
-        return json.loads(f.read(), ensure_ascii=False)
+        return json.loads(f.read())
 
 
 def write(path, data):
